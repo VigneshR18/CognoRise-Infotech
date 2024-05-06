@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+    }
+    #timer {
+        text-align: center;
+        font-size: 48px;
+    }
+</style>
+</head>
+<body>
+
+<div id="timer">00:00:00</div>
+
+<script>
+   
+    var countdownTime = 3600;
+
+   
+    function startTimer() {
+        var timerDisplay = document.getElementById("timer");
+
+        var hours, minutes, seconds;
+
+        var countdown = setInterval(function() {
+            hours = Math.floor(countdownTime / 3600);
+            minutes = Math.floor((countdownTime % 3600) / 60);
+            seconds = countdownTime % 60;
+
+            
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+           
+            timerDisplay.textContent = hours + ":" + minutes + ":" + seconds;
+
+           
+            countdownTime--;
+
+           
+            if (countdownTime < 0) {
+                clearInterval(countdown);
+                timerDisplay.textContent = "Time's up!";
+            }
+        }, 1000);
+    }
+
+   
+    window.onload = startTimer;
+</script>
+
+</body>
+</html>
